@@ -61,7 +61,11 @@ x(2)
 % valid range.  Try negative values, zero, and large positive values.  Copy
 % down the error message in each case, and report this in your submitted 
 % work as:
-%
+
+% =========================================================================
+% Exercise 1 Submission
+% =========================================================================
+
 % Error for negative index:
 % "Array indices must be positive integers or logical values."
 %
@@ -70,7 +74,9 @@ x(2)
 %
 % Error for positive index outside of the bounds:
 % "Index exceeds the number of array elements. Index must not exceed 6."
-%
+
+% =========================================================================
+
 % Only include the error message as a comment (with the percent signs), 
 % DO NOT INCLUDE THE CODE IN YOUR SUBMISSION.
 
@@ -106,9 +112,15 @@ plot(x,y)
 % creation of the vectors and the figure, as in the example.
 
 
+% =========================================================================
+% Exercise 2 Submission
+% =========================================================================
+
 x = [-5, -3, -1, 0, 2, 4, 6];           % Generate x vector
 y = [-25, -9, -1, 0, 4, 16, 36];        % Generate y vector
 plot(x, y)                              % Plot y against x
+
+% =========================================================================
 
 
 %% Creating Vectors with For Loops
@@ -190,6 +202,10 @@ plot(x,z)
 % appropriate comments.
 
 
+% =========================================================================
+% Exercise 3 Submission
+% =========================================================================
+
 N = 101;
 h = (7 - (-3))/(N-1);
 x = zeros(N, 1);                % Pre-allocate x and y vectors
@@ -201,6 +217,8 @@ for i = 1:N
 end
 
 plot(x,y)
+
+% =========================================================================
 
 
 %% Plotting Two Data Sets at Once
@@ -328,7 +346,11 @@ toc;
 % appropriate comments.
 
 
-% Create x factor using for loop
+% =========================================================================
+% Exercise 4 Submission
+% =========================================================================
+
+% Create x vector using for loop, as done in previous examples
 N = 5000001;
 h = (3 - (-2))/(N-1);
 x = zeros(N,1);
@@ -350,6 +372,8 @@ clear y;
 tic;
 y = atan(x);
 toc;
+
+% =========================================================================
 
     
 %% Further Avoiding Loops with linspace
@@ -388,7 +412,7 @@ legend('x-x^3', 'exp(x)','Location','SouthWest');
 %
 % and the particular solutions for initial conditions y(1) = -1, y(1) = 0,
 % and y(1) = 1. Plot these three particular solutions on the same axes
-% lettting the independent variable range from 1 to 5. 
+% letting the independent variable range from 1 to 5. 
 %
 % Once you have the three particular solutions you will
 % need to:
@@ -402,6 +426,32 @@ legend('x-x^3', 'exp(x)','Location','SouthWest');
 % Your submission should include, in the description section, the general 
 % solution of the ODE and the three particular solutions.  It should also 
 % have the appropriately commented code.
+
+% =========================================================================
+% Exercise 5 Submission
+% =========================================================================
+
+% General solution to the ODE: y = (t+C)/exp(t^2)
+% Particular solutions for:
+% Condition 1, y(1) = -1: y1 = (t-e-1)/exp(t^2)
+% Condition 2, y(1) = 0: y2 = (t-1)/exp(t^2)
+% Condition 3, y(1) = 1: y3 = (t+e-1)/exp(t^2)
+
+e = exp(1);                     % Define e
+t = linspace(1, 5, 100);        % Initialize t vector (Step 1)
+y1 = (t-e-1)./exp(t.^2);        % Create vectors y1, y2, y3 for solutions to each of the 3 initial conditions (Step 2)
+y2 = (t-1)./exp(t.^2);
+y3 = (t+e-1)./exp(t.^2);
+
+% Plotting (Step 3)
+plot(t, y1, t, y2, t, y3)       
+xlabel('t')
+ylabel('y(t)')
+title('Solutions to the ODE: dy/dt + (2*t)*y = 1/exp(t^2) with varying initial conditions');
+legend('y(1) = -1', 'y(1) = 0', 'y(1) = 1', 'Location','best');
+
+% =========================================================================
+
 
 %% More Plotting Examples - Line Style
 % There are many plotting options available, including color, line style,
@@ -498,6 +548,23 @@ ylabel('g');
 % Your submission should show the definition of the function, and the
 % computation of these values.
 
+
+% =========================================================================
+% Exercise 6 Submission
+% =========================================================================
+
+f = @(x) (x.^3 - abs(x)) .* log(x.^2+1);    % Define inline function as given
+
+y1 = f(0);                                  % Compute the values of f(0), f(1), f(-1)
+y2 = f(1);
+y3 = f(-1);
+
+x = linspace(-5, 5, 100);
+plot(x, f(x))
+xlabel('x')
+ylabel('f(x) = (x^3 - abs(x)) * ln(x^2+1)')
+
+% =========================================================================
 
 
 %% Inline functions of two variables
