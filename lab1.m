@@ -624,7 +624,20 @@ h(2, 2)
 %
 % Your submission should show the definition of the function, and the
 % computation of these values.
-%
+
+
+% =========================================================================
+% Exercise 7 Submission
+% =========================================================================
+
+f = @(x,y) y + y.^3 - cos(x) + x.^2 - x.^4;
+
+z1 = f(0,0);
+z2 = f(pi/2,1);
+z3 = f(-1,-1);
+
+% =========================================================================
+
 
 %% Numerically solving an implicit equation
 %
@@ -710,6 +723,19 @@ fprintf(' y(%g) = %g\n', 2, y);
 % Your submission should show the definition of the function, and the
 % computation of these three roots.
 
+
+% =========================================================================
+% Exercise 8 Submission
+% =========================================================================
+
+f = @(x,y) y + y.^3 - cos(x) + x.^2 - x.^4;
+
+guess = 0;
+y1 = fzero(@(y) f(0, y), guess);
+
+% =========================================================================
+
+
 %% Plotting the solution
 %
 % Now we are ready to plot y as a function of x.  We will construct an
@@ -755,7 +781,12 @@ ylabel('y');
 % construction of the arrays, the for loop, and the resultant figure.
 %
 % Label your axes.
-% 
+
+
+% =========================================================================
+% Exercise 9 Submission
+% =========================================================================
+
 
 %% Exercise 10
 %
@@ -776,7 +807,12 @@ ylabel('y');
 % functions, arrays, the for loop, and the figure.
 %
 % Label your axes.
-%
+
+
+% =========================================================================
+% Exercise 10 Submission
+% =========================================================================
+
 
 %% Install iode
 %
@@ -806,6 +842,12 @@ ylabel('y');
 % approaches infinity? Explain why solutions are symmetric about the 
 % y-axis, i.e. |y(x)=y(-x)| for any solution.
 
+
+% =========================================================================
+% Exercise 11 Submission
+% =========================================================================
+
+
 %% Exercise 12
 %
 % Objective: study the long-run behaviour of a differential equation from 
@@ -825,6 +867,12 @@ ylabel('y');
 % the solution method from Euler to the, much better, Runge-Kutta method.
 % Think about why solutions are not permitted to cross. If they do then
 % this indicates a problem with the numerical solver.
+
+
+% =========================================================================
+% Exercise 12 Submission
+% =========================================================================
+
 
 %% Exercise 13 (NOT TO BE HANDED IN)
 %
