@@ -150,7 +150,6 @@ for j = 1:N
 end
 
 disp(y);
-
 plot(x,y)
 %% Plotting y = sin(2 * pi * x)
 % MATLAB has a number of built in functions including the trigonometric functions 
@@ -183,15 +182,16 @@ plot(x,z)
 % Exercise 3 Submission
 % =========================================================================
 
-N = 101;
-h = (7 - (-3))/(N-1);
+N = 101;                        % Want 101 points
+h = (7 - (-3))/(N-1);           % h is the spacing between each of the points, i.e. h = x_i - x_i-1
 x = zeros(N, 1);                % Pre-allocate x and y vectors
 y = zeros(N, 1);
 
 for i = 1:N
     x(i) = -3 + (i-1) * h;      % x needs to start at -3 instead of 0, so we add increments of h to -3.
-    y(i) = abs(x(i))*x(i);      % This can be in the same for loop since it does not depend on the x vector being complete.
-end
+    y(i) = abs(x(i))*x(i);      % This can be in the same for loop since it does not 
+end                             % depend on the x vector being complete.
+
 
 plot(x,y)
 
@@ -331,8 +331,9 @@ for i = 1:N
 end
 toc;
 
+clear y;        % Clear y for the next array step
+
 % Construct (and time the construction of) y using vectorization
-clear y;
 tic;
 y = atan(x);
 toc;
@@ -400,8 +401,8 @@ legend('x-x^3', 'exp(x)','Location','SouthWest');
 
 e = exp(1);                     % Define e
 t = linspace(1, 5, 100);        % Initialize t vector (Step 1)
-y1 = (t-e-1)./exp(t.^2);        % Create vectors y1, y2, y3 for solutions to each of the 3 initial conditions (Step 2)
-y2 = (t-1)./exp(t.^2);
+y1 = (t-e-1)./exp(t.^2);        % Create vectors y1, y2, y3 for solutions to
+y2 = (t-1)./exp(t.^2);          % each of the 3 initial conditions (Step 2)
 y3 = (t+e-1)./exp(t.^2);
 
 % Plotting (Step 3)
@@ -509,10 +510,11 @@ y1 = f(0);                                  % Compute the values of f(0), f(1), 
 y2 = f(1);
 y3 = f(-1);
 
-x = linspace(-5, 5, 100);
+x = linspace(-5, 5, 100);                   % Plot the function against x, label axes
 plot(x, f(x))
 xlabel('x')
-ylabel('f(x) = (x^3 - abs(x)) * ln(x^2+1)')
+ylabel('y = f(x)')
+title('Plot of function f(x) = (x^3 - abs(x)) * ln(x^2+1)')
 
 % =========================================================================
 %% Inline functions of two variables
@@ -571,10 +573,10 @@ h(2, 2)
 % Exercise 7 Submission
 % =========================================================================
 
-f = @(x,y) y + y.^3 - cos(x) + x.^2 - x.^4;
+f = @(x,y) y + y.^3 - cos(x) + x.^2 - x.^4;     % Define inline function of two variables
 
-z1 = f(0,0);
-z2 = f(pi/2,1);
+z1 = f(0,0);                                    % Compute values of f(0,0, f(pi/2, 1), 
+z2 = f(pi/2,1);                                 % and f(-1,-1) as stated
 z3 = f(-1,-1);
 
 % =========================================================================
@@ -662,9 +664,9 @@ fprintf(' y(%g) = %g\n', 2, y);
 
 f = @(x,y) y + y.^3 - cos(x) + x.^2 - x.^4;     % Function definition
 
-y1 = fzero(@(y) f(0, y), 0);                    % Compute solution at x = 0
-x1 = fzero(@(x) f(x, 1/2), 0);                  % Compute 2 solutions at y = 1/2
-x2 = fzero(@(x) f(x, 1/2), 2);
+y1 = fzero(@(y) f(0, y), 0);           % Compute solution at x = 0 (guess = 0)
+x1 = fzero(@(x) f(x, 1/2), 0);         % Compute 2 solutions at y = 1/2 (guess = 0)
+x2 = fzero(@(x) f(x, 1/2), 2);         % (guess = 2)
 
 % =========================================================================
 %% Plotting the solution
@@ -726,9 +728,10 @@ for i = 1:length(xvals)                             % Generate y values using fo
     yvals(i) = fzero(@(y) g(xvals(i), y), 0);
 end
 
-plot(xvals, yvals);                                 % Plot results
+plot(xvals, yvals);                                 % Plot & label results
 xlabel('x');
 ylabel('y');
+title('Plot of solution to f(x,y) = y + y^3 - cos x + x^2 - x^4 passing through (0,0)')
 
 % =========================================================================
 %% Exercise 10
@@ -757,17 +760,18 @@ ylabel('y');
 % General implicit solution to the DE: C = sin(x) - x^3 + ln|y|
 % Particular solution where y(0) = 1: 0 = sin(x) - x^3 + ln|y|
 
-xvals = linspace(-1.5,1.25,100);
-yvals = zeros(size(xvals));
-f = @(x,y) sin(x) - x.^3 + log(abs(y));
+xvals = linspace(-1.5,1.25,100);                    % Create x vector
+yvals = zeros(size(xvals));                         % Preallocate y vector
+f = @(x,y) sin(x) - x.^3 + log(abs(y));             % Define inline fcn of two vars
 
 for i = 1:length(xvals)
-    yvals(i) = fzero(@(y) f(xvals(i), y), 0.5);
-end
+    yvals(i) = fzero(@(y) f(xvals(i), y), 0.9);     % Solve for y values using fzero 
+end                                                 % in for loop (guess = 0.9)
 
-plot(xvals, yvals);
+plot(xvals, yvals);                                 % Plot solution, label axes
 xlabel('x');
 ylabel('y');
+title('Particular solution to dy/dx = (-cos x + 3x^2)*y passing through y(0) = 1')
 
 % =========================================================================
 %% Install iode
@@ -847,39 +851,3 @@ ylabel('y');
 % =========================================================================
 %% 
 % 
-%% Exercise 13 (NOT TO BE HANDED IN)
-% Objective: Solve a differential equation and plot the largest interval of 
-% existence for this solution.
-% 
-% Details: Find the particular implicit solution of the differential equation
-% 
-% |dy/dx = -x/y, y(0) = -2|
-% 
-% Determine the largest interval of validity and plot the solution with 50 grid 
-% points in this interval.
-% 
-% In the comments before your code, explain why fzero has an error.
-% 
-% Your submission should show the particular solution, in implicit form, in 
-% the comments, the definition of the appropriate inline functions, arrays, loops, 
-% and the figure. 
-% 
-% Label your axes.
-%% Exercise 14 (NOT TO BE HANDED IN)
-% Objective: Solve a differential equation and plot the solution on the specified 
-% interval
-% 
-% Details: Find the particular implicit solution of the differential equation
-% 
-% |du/dt = -(u^4 - 1), u(0) = .1|
-% 
-% and plot it for |t| from 0 to 1.
-% 
-% Determine a good starting guess that works throughout the interval and plot 
-% the solution with 50 grid points in this interval.
-% 
-% Your submission should show the particular solution, in implicit form, in 
-% the comments, the definition of the appropriate inline functions, arrays, loops, 
-% and the figure.
-% 
-% Label your axes.
