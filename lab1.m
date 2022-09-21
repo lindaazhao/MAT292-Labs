@@ -506,9 +506,9 @@ ylabel('g');
 
 f = @(x) (x.^3 - abs(x)) .* log(x.^2+1);    % Define inline function as given
 
-y1 = f(0);                                  % Compute the values of f(0), f(1), f(-1)
-y2 = f(1);
-y3 = f(-1);
+y1 = f(0)                                   % Compute the values of f(0), f(1), f(-1)
+y2 = f(1)                                   % Left without semicolons to see their values
+y3 = f(-1)
 
 x = linspace(-5, 5, 100);                   % Plot the function against x, label axes
 plot(x, f(x))
@@ -575,9 +575,9 @@ h(2, 2)
 
 f = @(x,y) y + y.^3 - cos(x) + x.^2 - x.^4;     % Define inline function of two variables
 
-z1 = f(0,0);                                    % Compute values of f(0,0, f(pi/2, 1), 
-z2 = f(pi/2,1);                                 % and f(-1,-1) as stated
-z3 = f(-1,-1);
+z1 = f(0,0)                                     % Compute values of f(0,0, f(pi/2, 1), 
+z2 = f(pi/2,1)                                  % and f(-1,-1) as stated
+z3 = f(-1,-1)                                   % Left without semicolons to see their values
 
 % =========================================================================
 %% Numerically solving an implicit equation
@@ -664,9 +664,9 @@ fprintf(' y(%g) = %g\n', 2, y);
 
 f = @(x,y) y + y.^3 - cos(x) + x.^2 - x.^4;     % Function definition
 
-y1 = fzero(@(y) f(0, y), 0);           % Compute solution at x = 0 (guess = 0)
-x1 = fzero(@(x) f(x, 1/2), 0);         % Compute 2 solutions at y = 1/2 (guess = 0)
-x2 = fzero(@(x) f(x, 1/2), 2);         % (guess = 2)
+y1 = fzero(@(y) f(0, y), 0)            % Compute solution at x = 0 (guess = 0)
+x1 = fzero(@(x) f(x, 1/2), 0.1)        % Compute 2 solutions at y = 1/2 (guess = 0.1)
+x2 = fzero(@(x) f(x, 1/2), 2)          % (guess = 2)
 
 % =========================================================================
 %% Plotting the solution
@@ -814,8 +814,6 @@ title('Particular solution to dy/dx = (-cos x + 3x^2)*y passing through y(0) = 1
 % direction field) must also be symmetric about the y-axis. 
 
 % =========================================================================
-%% 
-% 
 %% Exercise 12
 % Objective: study the long-run behaviour of a differential equation from its 
 % direction field
@@ -845,9 +843,7 @@ title('Particular solution to dy/dx = (-cos x + 3x^2)*y passing through y(0) = 1
 % To more generally describe which solutions are approached depending on
 % y_0:
 % y E (-inf, -1) approach -1
-% y E (-1, 2) approach 0
+% y E (-1, 2) approach 1
 % y = (2, inf) approach inf
 
 % =========================================================================
-%% 
-% 
