@@ -78,8 +78,6 @@ h = 0.05;
 [soln_t, soln_X] = solvesystem_zhaoli50(f, g, t0, tN, x0, h);
 
 % Exact solution
-% x1_exact = exp(-t/4) .* ((3/20)*cos(sqrt(151)/4*t)-(sq/20)*sin(sqrt(151)/4*t)) + (17/sqrt(151))*exp(-t/4) .* ((3/20)*sin(sqrt(151)/4*t) + (sqrt(151)/20)*cos(sqrt(151)/4*t));
-% x2_exact = exp(-t/4) .* cos(sqrt(151)/4*t) + (17/sqrt(151)).*exp(-t/4) .* sin(sqrt(151)/4*t);
 t = linspace(t0, tN, 250);
 sq = sqrt(151); % Term appears a lot in the solution, make variable for simplification
 x1_exact = exp(-t/4) .* ((3/20)*cos(sq/4*t)-(sq/20)*sin(sq/4*t)) + (17/sq)*exp(-t/4) .* ((3/20)*sin(sq/4*t) + (sq/20)*cos(sq/4*t));
