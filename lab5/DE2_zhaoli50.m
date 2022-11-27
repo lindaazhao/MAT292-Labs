@@ -19,12 +19,14 @@ function [T,Y] = DE2_zhaoli50(f, t0, tN, y0, y1, h)
     Y(2) = y0 + y1*h;
 
     for i = 2:length(T)-1
-        % Approximate y'
-        Y_pr = (Y(i) - Y(i-1))/h
+        % Approximate y' = Y_pr at i
+        Y_pr = (Y(i) - Y(i-1))/h;
+
         % Evaluate y'' using t, y, and y' at i
-        Y_dpr = f(T(i), Y(i), Y_pr)
+        Y_dpr = f(T(i+1), Y(i), Y_pr);
+
         % Take next step for y
-        Y(i+1) = h^2 * Y_dpr - Y(i-1) + 2*Y(i);
+        Y(i+1) = (h^2)*Y_dpr + 2*Y(i)-Y(i-1);
     end
 end
 
